@@ -15,7 +15,15 @@ public class Calculadora extends JFrame implements ActionListener {
     private final String names[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "+", "-", "*", "/", "=", "."};
     JButton bl[] = new JButton[3];
     private final String botoesLimpar[] = {"Backs", "CE", "C"};
-
+    
+    String operador;
+    String valor1;
+    String valor2;
+    String operadorIgual;
+    
+    int v1;
+    int v2;
+   
     public Calculadora() {
         setTitle("Calculadora");
         setSize(LARGURA, ALTURA);
@@ -71,5 +79,52 @@ public class Calculadora extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        for (int i = 0; i < 10; i++) {
+            if (e.getSource() == b[i]) {
+                valor1 = txfVisor.getText() + e.getActionCommand();
+                txfVisor.setText(valor1);
+                
+                v1 = Integer.parseInt(valor1);
+                System.out.println("valor 1: " + v1);
+            }
+        }
+        
+        for (int i = 10; i < 14; i++) {
+            if (e.getSource() == b[i]) {
+                operador = e.getActionCommand();
+                txfVisor.setText(operador);
+                System.out.println("operador: " + operador);
+            }           
+        }
+        
+        if (e.getSource() == b[14]) {
+            System.out.println("resultado: " + (calcular(v1, operador, v1)));
+        }
+        
+        if (e.getSource() == bl[2]) {
+           valor1 = "";
+           valor2 = "";
+           operador = "";
+           txfVisor.setText("");
+        }
+        
+    }
+
+    private int calcular(int v1, String op, int num2){
+    int res = 0;
+
+    if(op == "+"){
+        res = v1 + num2;
+    }
+    else if(op == "-"){
+       res = v1 - num2;
+    }
+    else if(op == "*"){
+       res = v1 * num2;
+    }
+    else if(op == "/"){
+       res = v1 / num2;
+    }
+        return res;
     }
 }
