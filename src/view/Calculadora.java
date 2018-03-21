@@ -20,6 +20,9 @@ public class Calculadora extends JFrame implements ActionListener {
     String valor1;
     String valor2;
     String operadorIgual;
+    String temp = "";
+    
+    int guarda;
     
     int v1;
     int v2;
@@ -94,11 +97,11 @@ public class Calculadora extends JFrame implements ActionListener {
                 operador = e.getActionCommand();
                 txfVisor.setText(operador);
                 System.out.println("operador: " + operador);
-            }           
+            }          
         }
         
         if (e.getSource() == b[14]) {
-            System.out.println("resultado: " + (calcular(v1, operador, v1)));
+            txfVisor.setText(Integer.toString((calcular(v1, operador, v1))));
         }
         
         if (e.getSource() == bl[2]) {
@@ -110,21 +113,22 @@ public class Calculadora extends JFrame implements ActionListener {
         
     }
 
-    private int calcular(int v1, String op, int num2){
-    int res = 0;
+    private int calcular(int num1, String op, int num2){
+        int res = 0;
 
-    if(op == "+"){
-        res = v1 + num2;
-    }
-    else if(op == "-"){
-       res = v1 - num2;
-    }
-    else if(op == "*"){
-       res = v1 * num2;
-    }
-    else if(op == "/"){
-       res = v1 / num2;
-    }
+        if(op == "+"){
+            res = num1 + num2;
+        }
+        else if(op == "-"){
+           res = num1 - num2;
+        }
+        else if(op == "*"){
+           res = num1 * num2;
+        }
+        else if(op == "/"){
+           res = num1 / num2;
+        }
+        
         return res;
     }
 }
